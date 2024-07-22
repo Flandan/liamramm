@@ -5,17 +5,16 @@ import Card from '../components/Card.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 import Label from '../components/Label.astro'
 import SkillLayout from '../components/SkillLayout.astro'
-import PostPreview from '@/components/blog/PostPreview.astro'
+import PostPreview from '../components/projects/PostPreview.astro'
 
 import { Image } from 'astro:assets'
 import astro from '../assets/about-astro.png'
 
 import { getAllPosts, sortMDByDate } from '@/utils'
 
-const languages = ['lorem', 'ipsum']
-const frontend = ['lorem', 'ipsum', 'lorem', 'ipsum', 'lorem', 'ipsum', 'lorem']
-const backend = ['lorem', 'ipsum', 'lorem', 'ipsum']
-const others = ['lorem', 'ipsum', 'lorem', 'ipsum', 'lorem']
+const languages = ['C++', 'Python', 'Java', 'Processing', 'JavaScript', 'HTML']
+const ui = ['React', 'Astro', 'HTML', 'Processing', 'Unreal UMG']
+const programs = ['Unreal Engine', 'Blender', 'Plasticity', 'Photoshop', 'Affinity Photo', 'Davinci Resolve']
 
 const MAX_POSTS = 10
 const allPosts = await getAllPosts()
@@ -34,19 +33,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 			<div class='flex flex-col items-center gap-y-4'>
 				<h1 class='text-3xl font-bold'>Lorem ipsum dolor</h1>
-				<a
-					href='https://github.com/srleom/astro-theme-resume.git'
-					class='flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
-				>
-					<span class='relative flex items-center justify-center'>
-						<span
-							class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-						></span>
-						<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
-					</span>
-
-					<p class='font-medium'>Get free template</p>
-				</a>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Lorem Ipsum'>
 						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='h-5 w-5' slot='icon'
@@ -87,15 +73,21 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 		<Section title='About'>
 			<p class='text-muted-foreground'>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis atque quia omnis
-				consectetur, voluptas praesentium veniam blanditiis ratione asperiores accusantium laborum
-				odit commodi quis deserunt incidunt et dolor iure ut! Lorem ipsum dolor sit, amet
-				consectetur adipisicing elit. Alias quia, doloribus ut beatae perspiciatis voluptatibus.
+				Hi, I'm Liam. I love combining creativity and technical solutions to explore complex problems. As a programmer, Technical Artist, and Nautical Rigger for traditional sailing ships, I strive for elegance over adequacy and thoughtfulness over impulse, drawing inspiration from the world around us.
+			</p>
+			<p class='text-muted-foreground'>
+				My passion lies in building and designing innovative technology. Over the years, I've created numerous projects, many of which are showcased here. You'll find demos, designs, development journals, and other thoughts that reflect my journey.
+			</p>
+			<p class='text-muted-foreground'>
+				I specialize in using Unreal Engine, Blender, Photoshop/Affinity Photo, and Davinci Resolve. As a language-agnostic programmer, I believe in choosing the right tools for the job (within reason). I'm proficient in C++, Python, Java, JavaScript, HTML, and Unreal Engine's Blueprint.
+			</p>
+			<p class='text-muted-foreground'>
+				Whether it's crafting engaging visuals, developing immersive applications, or rigging traditional sailing ships, I bring a unique blend of skills and experience to every project. Explore my work and join me in the pursuit of creativity and innovation.
 			</p>
 		</Section>
 		{
 			allPostsByDate.length > 0 && (
-				<Section title='Posts'>
+				<Section title='Projects'>
 					<ul class='flex flex-col gap-y-2'>
 						{allPostsByDate.map((p) => (
 							<li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -137,8 +129,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 		<Section title='Education'>
 			<Card
-				heading='Lorem Ipsum'
-				subheading='Sit amet consectetur'
+				heading='BSc Hons Physics'
+				subheading='University of Aberdeen'
 				date='Dec 2022 - Nov 2023'
 				imagePath='/src/assets/about-astro.png'
 				altText='Lorem, ipsum dolor sit'
@@ -146,30 +138,25 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			>
 				<ul class='ml-4 list-disc text-muted-foreground'>
 					<li>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-						molestiae laboriosam pariatur!
-
-						<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
+						First Class Honours.
+					</li>
+					<li>
+						Emphasis on Computational Physics and Simulation Tooling.
+					</li>
+					<li>
+						Final project and dissertation in Simulation of Emergent Dynamics in large Crowds.
 					</li>
 				</ul>
 			</Card>
-			<Card
-				heading='Lorem Ipsum'
-				subheading='Sit amet consectetur'
-				date='Dec 2022 - Nov 2023'
-				imagePath='/src/assets/about-astro.png'
-				altText='Lorem, ipsum dolor sit'
-				imageClass='h-12 w-auto md:-left-16'
-			/>
 		</Section>
 
-		<Section title='Projects'>
+		<Section title='Demos'>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
-					href='https://www.google.com'
-					heading='Consectetur'
-					subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit.'
-					imagePath='/src/assets/coming-soon.png'
+					href='https://flandan.github.io/law-react-ghpages/'
+					heading='Tron Interview'
+					subheading='An Interactive Learning Tool, reinforcing interviewing techniques for Law Students'
+					imagePath='/src/assets/Tron Interview.png'
 					altText='Example'
 					class='w-full sm:w-1/2'
 				/>
@@ -209,22 +196,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 		<Section title='Skills'>
 			<SkillLayout title='Languages' skills={languages} />
-			<SkillLayout title='Frontend' skills={frontend} />
-			<SkillLayout title='Backend' skills={backend} />
-			<SkillLayout title='Others' skills={others} />
+			<SkillLayout title='UI/UX' skills={ui} />
+			<SkillLayout title='Programs' skills={programs} />
 		</Section>
 	</div>
-	<a
-		href='https://github.com/srleom/astro-theme-resume.git'
-		class='mt-16 flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
-	>
-		<span class='relative flex items-center justify-center'>
-			<span
-				class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-			></span>
-			<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
-		</span>
-
-		<p class='font-medium'>Get free template</p>
-	</a>
 </PageLayout>
