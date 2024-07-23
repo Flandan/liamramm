@@ -1,0 +1,72 @@
+---
+title: "Enhancing the Old With the New (Unreal Engine)"
+description: "Integrating Assets created for Source Engine into Unreal Engine for a new feel"
+publishDate: "22 Jul 2023"
+tags: ["source engine", "unreal engine", "3d modelling", "animation", "rigging", "game development", "c++"]
+---
+import { Image } from 'astro:assets';
+
+import empires_tank from './images/medium-tank-empires.jpg';
+import tank from './images/unreal-tank.png';
+import tank2 from './images/unreal-tank-2.png';
+import tank3 from './images/unreal-tank-3.png';
+import tank_wireframe from './images/unreal-tank-wireframe.png';
+
+<Image src={empires_tank} alt="Empires Tank"/>
+
+## A Brief History
+This small side project was embarked upon as an investigation into the viability of using assets created for the Source Engine in Unreal Engine. The Source Engine is a game engine developed by Valve Corporation. Its main selling point is its ability to render moderately (by modern standards) detailed scenes with a high level of creative control and relatively low hardware requirements. The engine is used in many games, including [Half-Life 2](https://www.half-life.com), which solidified my own personal interest in video games and real time technology back when it released in 2004 along with Portal, Team Fortress 2, Left 4 Dead and Counterstrike in its various iterations. 
+
+Back in the day, during my youth, creating maps and tinkering with mods for [Half-Life 2](https://www.half-life.com) was a big part of my life. I spent countless hours creating levels, models, textures and dipping into animation for the game and its various source contemporaries. I was always fascinated by the idea of creating my own experiences and the Source Engine was the perfect tool for that. However, as time went on, I found myself often frustrated by the riggidity of the engine and the limitations of the tools available to me. Asset creation in particular was a dark art with little coherence between the different Asset types and their related tools.
+
+The Unreal Engine is a game engine developed by Epic Games. It is known for its ability to render highly detailed scenes with a high level of realism. The engine is used in many games, including Fortnite, PlayerUnknowns Battlegrounds and many MANY more. Back in the early 2000s my exposure to unreal engine was limited to the Unreal Tournament series. I was always impressed by the compelling visuals and the level of scale in these games.
+
+## The Project
+The goal of this project was to see if it was possible to take assets created for the Source Engine and adapt them to use in Unreal Engine. The assets in question were a set of models, textures and animations created for a Half-Life 2 mod that I had played a lot of in the past. Empires Mod, an interesting take on a star wars esque battle of two factions fighting for limited resources in a mixed gametype with both Real Time Strategy elements, First Person Shooter and Vehiclular warfare. The mod is a small project that has stood the test of time, with players still gathering almost every weekend to keep the glory days alive. I had always been impressed by the quality of the assets in the mod and thought they would be a good test for the Unreal Engine.
+
+## The Process
+I set out to find a reasonable and repeatable workflow for converting the assets. 
+* The first step was to find a way to rip the original assets from the project. This was achieved by using a tool called [Crowbar](https://github.com/ZeqMacaw/Crowbar/releases), a tool that can extract models, textures and animations from Source Engine files. 
+* [VTFEdit](https://nemstools.github.io/pages/VTFLib-Download.html), another open source tool was used to convert the texture files from valves vtf format to the more universally recognised png.
+* The models were then converted from the source engine's .mdl files to another format used in Source's pipeline .smd files. This was achieved using [Crowbar](https://github.com/ZeqMacaw/Crowbar/releases) once again.
+* The next step was to import the converted assets into [Blender](https://www.blender.org/) then export as .fbx, allowing a transformation on the skeletal bones of the model to conform to Unreal Engines coordinate system.
+* Unreal Engine was then used to import this fbx.
+* The textures were imported seperately and a basic PBR material constructed for the model.
+* The final step was to create a new control rig for the model in Unreal Engine. This was mostly to support animation of the vehicle's tracks.
+
+I intend to write this part of the process up in more detail in the future, stay tuned. But for now, here is a teaser of the final result.
+
+<Image src={tank} alt="Empires Tank in Unreal"/>
+<Image src={tank2} alt="Empires Tank in Unreal"/>
+<Image src={tank3} alt="Empires Tank in Unreal"/>
+Consider for a moment the polycount of this model.
+<Image src={tank_wireframe} alt="Empires Tank Wireframe"/>
+
+## Rigging the Vehicle in Unreal
+I chose to use the somewhat new Chaos vehicle system to base the vehicle on in unreal. But Still, the vehicle was an interesting challenge in that it had tracks. The original model maintained its bones from the original source files but the reliance on animations and the source engine Vehicle IK systems meant that a direct equivalence could not be made. The vehicle was rigged with a new control rig taking the positions of the chaos vehicle systems wheels and moving the models bones along with them, this was sufficient to animate the tracks vertically. I drove the tiling of the texture along the tracks via blueprint based on a scaled value of the wheels rotation angle, one for each side. This gave The result of the tracks moving with the wheels. 
+
+I also added a simple particle system to simulate smoke from the exhaust driven via blueprint by the vehicles RPM.
+
+After much tweaking the final result was a vehicle that could be driven around the level with a high degree of fidelity.
+
+- Note: The wheels are currently individually animated, this is a limitation of the chaos vehicle system. I intend to look into a way to drive the wheels via control rig to maintain the illusion of tracks. Alternatively, I could look into a way of modifying the chaos vehicle system to support coupled rotation across all wheels for a more authentic simulation.
+
+## Video
+I find it fascinating to see the old assets in a new light. Here is a couple of videos of the vehicle in action.
+<div id="vid" style="display:inline-block;">
+  <video controls>
+    <source src="/videos/enhancing-the-old/tank1.mp4" type="video/mp4"/>
+    Your browser does not support the video tag.
+  </video>
+</div>
+<div id="vid" style="display:inline-block;">
+  <video controls>
+    <source src="/videos/enhancing-the-old/tank2.mp4" type="video/mp4"/>
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+Given the models age and as a result its extreme low polycount it is impressive how well it holds up in the Unreal Engine. The PBR materials really make the original normal maps pop. The new control rig also gives the model a new lease of life. I am excited to see what could be built from this project in the future.
+
+Of course, full credit must go to the original creators of the assets. I am merely a custodian of their work, celebrating it in a new light. I hope that this project can inspire others to take a look at their old work and see what new life they can breathe into it.

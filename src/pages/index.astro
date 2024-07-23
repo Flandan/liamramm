@@ -13,8 +13,10 @@ import astro from '../assets/about-astro.png'
 import { getAllPosts, sortMDByDate } from '@/utils'
 
 const languages = ['C++', 'Python', 'Java', 'Processing', 'JavaScript', 'HTML']
-const ui = ['React', 'Astro', 'HTML', 'Processing', 'Unreal UMG']
-const programs = ['Unreal Engine', 'Blender', 'Plasticity', 'Photoshop', 'Affinity Photo', 'Davinci Resolve']
+const frameworks = ['React', 'Astro', 'HTML', 'Processing', 'Unreal UMG']
+const design = ['Unreal Engine', 'Blender', '3ds Max', 'Plasticity', 'Rhino3D', 'Adobe Photoshop', 'Affinity Photo', 'Davinci Resolve']
+const productivity = ['Notion', 'Obsidian', 'PureRef']
+const development = ['VS Code', 'Visual Studio', 'Git', 'Bitbucket', 'GitHub', 'GitHub Copilot', 'ChatGPT']
 
 const MAX_POSTS = 10
 const allPosts = await getAllPosts()
@@ -104,7 +106,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				heading='Lorem Ipsum'
 				subheading='Sit amet consectetur'
 				date='Dec 2022 - Nov 2023'
-				imagePath='/src/assets/about-astro.png'
+				imagePath='/src/assets/solid-cube.png'
 				altText='Lorem, ipsum dolor sit'
 				imageClass='h-12 w-auto md:-left-16'
 			>
@@ -121,7 +123,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				heading='Lorem Ipsum'
 				subheading='Sit amet consectetur'
 				date='Dec 2022 - Nov 2023'
-				imagePath='/src/assets/about-astro.png'
+				imagePath='/src/assets/solid-cube.png'
 				altText='Lorem, ipsum dolor sit'
 				imageClass='h-12 w-auto md:-left-16'
 			/>
@@ -132,7 +134,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				heading='BSc Hons Physics'
 				subheading='University of Aberdeen'
 				date='Dec 2022 - Nov 2023'
-				imagePath='/src/assets/about-astro.png'
+				imagePath='/src/assets/solid-cube.png'
 				altText='Lorem, ipsum dolor sit'
 				imageClass='h-12 w-auto md:-left-16'
 			>
@@ -157,14 +159,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					heading='Tron Interview'
 					subheading='An Interactive Learning Tool, reinforcing interviewing techniques for Law Students'
 					imagePath='/src/assets/Tron Interview.png'
-					altText='Example'
+					altText='Interview Game'
 					class='w-full sm:w-1/2'
 				/>
 				<ProjectCard
-					as='div'
-					heading='Coming soon...'
-					subheading=''
-					imagePath='/src/assets/coming-soon.png'
+					href="https://www.youtube.com/watch?v=U3mndWmD4B4"
+					heading='Hidden by Horizons'
+					subheading='A music video for the Artist Lone'
+					imagePath='/src/assets/hidden-by-horizons.jpg'
 					altText='Lorem, ipsum dolor sit'
 					class='w-full sm:w-1/2'
 				/>
@@ -177,7 +179,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				heading='Lorem ipsum, dolor sit amet consectetur adipisicing.'
 				subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta magni consequuntur corrupti.'
 				date='Mar 2024 - Mar 2024'
-				imagePath='/src/assets/about-astro.png'
+				imagePath='/src/assets/solid-cube.png'
 				altText='Lorem, ipsum dolor sit'
 				imageClass='h-11 w-auto md:-left-16'
 				href='https://www.google.com'
@@ -187,7 +189,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 				heading='Lorem ipsum, dolor sit amet'
 				subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta.'
 				date='Mar 2029 - Mar 2032'
-				imagePath='/src/assets/about-astro.png'
+				imagePath='/src/assets/solid-cube.png'
 				altText='Lorem, ipsum dolor sit'
 				imageClass='h-11 w-auto md:-left-16'
 				href='https://www.google.com'
@@ -196,8 +198,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 		<Section title='Skills'>
 			<SkillLayout title='Languages' skills={languages} />
-			<SkillLayout title='UI/UX' skills={ui} />
-			<SkillLayout title='Programs' skills={programs} />
+			<SkillLayout title='Design' skills={design} />
+			<SkillLayout title='Productivity' skills={productivity} />
+			<SkillLayout title='Development' skills={development} />
 		</Section>
 	</div>
 </PageLayout>
